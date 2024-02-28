@@ -14,14 +14,14 @@ export default function App() {
   ];
   
   const [contacts, setContacts] = useState(initialContacts);
+  
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     window.localStorage.setItem("saved-contacts", JSON.stringify(contacts))
-  });
+  }, [contacts]);
 
-  const [filterForContacts, setFfilterForContacts] = useState("");
-
-  const visibleContacts = contacts.filter((contact) => contact.name.toLowerCase().includes(filterForContacts.toLowerCase()));
+  const visibleContacts = contacts.filter((contact) => contact.name.toLowerCase().includes(filter.toLowerCase()));
   
   const addContact = (newContact) => {
     setContacts((prevContacts) => {
@@ -36,7 +36,7 @@ export default function App() {
     <div className={css.phonebookContainer}>
       <h1 className={css.title}>Phonebook</h1>
       <ContactForm addContact={addContact}/>
-      <SearchBox value={filterForContacts} onChange={setFfilterForContacts} />
+      <SearchBox value={filter} onChange={setFilter} />
       <ContactList contacts={visibleContacts} onDelete={deleteContact} />
     </div>
   )

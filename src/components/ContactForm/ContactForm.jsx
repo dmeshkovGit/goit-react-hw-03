@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import css from './ContactForm.module.css'
 
 
+
 export default function ContactForm({addContact}) {
     const nameFieldId = useId();
     const numberFieldId = useId();
@@ -20,18 +21,26 @@ export default function ContactForm({addContact}) {
             actions.resetForm();
         }}>
             <Form className={css.form}>
+
                 <div className={css.inputWrapper}>
+
                     <label className={css.inputLabel} htmlFor={nameFieldId}>Name</label>
+
                     <Field className={css.input} type="text" name="contactName" id={nameFieldId}></Field>
-                    <ErrorMessage className={css.error} name="contactName" component="span"/>
+
+                    <ErrorMessage className={css.error} name="contactName" component="span" />
                 </div>
                 <div className={css.inputWrapper}>
+
                     <label className={css.inputLabel} htmlFor={numberFieldId}>Number</label>
+
                     <Field className={css.input}  type="phone" name="contactNumber" id={numberFieldId}></Field>
+                    
                     <ErrorMessage className={css.error} name="contactNumber" component="span"/>
-             </div>
+                </div>
             
-            <button className={css.submitBtn} type="submit">Add contact</button>
+                <button className={css.submitBtn} type="submit">Add contact</button>
+                
           </Form>
         </Formik>
     )
